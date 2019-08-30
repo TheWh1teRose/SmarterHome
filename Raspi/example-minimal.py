@@ -25,8 +25,8 @@ class device_handler(debounce_handler):
     """Publishes the on/off state requested,
        and the IP address of the Echo making the request.
     """
-    TRIGGERS = {"kleine Lampe": 52000, "große Lampe": 53000, "Schreibtischlampe": 54000}
-    REMOTEADRESS = {"kleine Lampe": 1, "große Lampe": 3, "Schreibtischlampe": 2}
+    TRIGGERS = {"kleine Lampe": 52000, "grosse Lampe": 53000, "Schreibtischlampe": 54000}
+    REMOTEADRESS = {"kleine Lampe": 1, "grosse Lampe": 3, "Schreibtischlampe": 2}
 
     def act(self, client_address, state, name):
         print "State", state, "on ", name, "from client @", client_address
