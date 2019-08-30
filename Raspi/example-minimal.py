@@ -30,7 +30,7 @@ class device_handler(debounce_handler):
 
     def act(self, client_address, state, name):
         print "State", state, "on ", name, "from client @", client_address
-        subprocess.run(["sudo", "/home/SmartHome/raspberry-remote/send", "11111", str(REMOTEADRESS(name)), int(state)])
+        subprocess.call(["sudo", "/home/SmartHome/raspberry-remote/send", "11111", str(REMOTEADRESS(name)), int(state)])
         return True
 
 if __name__ == "__main__":
