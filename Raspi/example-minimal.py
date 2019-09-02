@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 """ fauxmo_minimal.py - Fabricate.IO
 
     This is a demo python file showing what can be done with the debounce_handler.
@@ -21,16 +22,18 @@ from debounce_handler import debounce_handler
 
 logging.basicConfig(level=logging.DEBUG)
 
+time.sleep(5)
+
 class device_handler(debounce_handler):
     """Publishes the on/off state requested,
        and the IP address of the Echo making the request.
     """
-    TRIGGERS = {"kleine Lampe": 52000, "grosse Lampe": 53000, "Schreibtischlampe": 54000}
-    REMOTEADRESS = {"kleine Lampe": 1, "grosse Lampe": 3, "Schreibtischlampe": 2}
+    TRIGGERS = {"kleine Lampe": 52000, "grosse Lampe": 53000, "Schreibtischlampe": 54000, "Ventilator": 55000, "Anlage": 56000}
+    REMOTEADRESS = {"kleine Lampe": 1, "grosse Lampe": 3, "Schreibtischlampe": 2, "Ventilator": 4, "Anlage": 5}
 
     def act(self, client_address, state, name):
         print "State", state, "on ", name, "from client @", client_address
-        subprocess.call(["sudo", "/home/pi/SmartHome/raspberry-remote/send", "11111", str(self.REMOTEADRESS[name]), str(int(state))])
+        subprocess.call(["sudo", "/home/pi/SmartHome/raspberry-remote/send", "-p", "2", "11111", str(self.REMOTEADRESS[name]), str(int(state))])
         return True
 
 if __name__ == "__main__":
